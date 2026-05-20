@@ -22,7 +22,7 @@ class MoreInfoCustom {
         this._ha = (await HOME_ASSISTANT.element) as HaExtended;
         this.run();
       },
-      { once: true },
+      { once: true }
     );
 
     instance.addEventListener(
@@ -31,7 +31,7 @@ class MoreInfoCustom {
         this._moreInfoDialog = (await event.detail.HA_MORE_INFO_DIALOG.element) as HaMoreInfoDialog;
         this._moreInfoDialogInfo = (await event.detail.HA_MORE_INFO_DIALOG_INFO.element) as HaMoreInfoDialogInfo;
         this._watchMoreInfoDialog();
-      },
+      }
     );
 
     this._styleManager = new HomeAssistantStylesManager({
@@ -194,6 +194,5 @@ class MoreInfoCustom {
 }
 
 if (!window.MoreInfoCustom) {
-  console.info('more-info-custom v0.0.1');
   window.MoreInfoCustom = new MoreInfoCustom();
 }

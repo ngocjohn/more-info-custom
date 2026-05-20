@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "es2021",
     "module": "ESNext",
-    "moduleResolution": "bundler",
-    "lib": ["ES2023", "dom"],
+    "lib": ["ES2023", "dom", "DOM.Iterable"],
     "noEmit": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
@@ -16,13 +15,12 @@
     "esModuleInterop": true,
     "allowJs": true,
     "rootDir": "src",
-    "outDir": "./dist/",
     "paths": {
       "@types": ["./src/types"],
       "@utils/*": ["./src/utils/*"]
     }
   },
   "ignoreDeprecations": "6.0",
-  "include": ["src/**/*.ts", "package.json"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "lib", "dist", "build"]
 }

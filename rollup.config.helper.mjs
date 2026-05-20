@@ -33,6 +33,8 @@ const styles = {
   gradientColor: ['#02343F', '#F0EDCC'],
 };
 
+const toJsStringLiteral = (value) => JSON.stringify(String(value ?? ''));
+
 export function logCardInfo(version) {
   const part1 = '🔬 MORE-INFO-CUSTOM 🔬';
   const part2 = `· ${version} ·`;
@@ -56,9 +58,9 @@ export function logCardInfo(version) {
       '${part1Style}',
       '${part2Style}',
     );
-    console.info('${description}');
-    console.info('${repo}');
-    console.info('${sponsor}');
+    console.info(${toJsStringLiteral(description)});
+    console.info(${toJsStringLiteral(repo)});
+    console.info(${toJsStringLiteral(sponsor)});
     console.groupEnd();
   `;
 }

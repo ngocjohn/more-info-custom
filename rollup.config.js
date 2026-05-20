@@ -1,6 +1,7 @@
 import typescript from '@rollup/plugin-typescript';
 import serve from 'rollup-plugin-serve';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import terser from '@rollup/plugin-terser';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import { version } from './package.json';
@@ -10,6 +11,7 @@ const dev = process.env.ROLLUP_WATCH;
 const port = process.env.PORT || 8235;
 const currentVersion = dev ? 'DEVELOPMENT' : `v${version}`;
 const custombanner = logCardInfo(currentVersion);
+const outputFile = dev ? 'dist/more-info-custom.js' : 'build/more-info-custom.js';
 
 const serveopts = {
   contentBase: ['./dist'],
@@ -20,6 +22,14 @@ const serveopts = {
   },
 };
 
+const terserOpt = {
+  module: true,
+  compress: {
+    drop_console: ['log', 'error'],
+    module: false,
+  },
+};
+
 const plugins = [
   nodeResolve({
     preferBuiltins: false,
@@ -27,6 +37,7 @@ const plugins = [
   commonjs(),
   json(),
   dev && serve(serveopts),
+  !dev && terser(terserOpt),
 ];
 
 export default [
@@ -34,20 +45,17 @@ export default [
     input: 'src/more-info-custom.ts',
     output: [
       {
-        file: 'dist/more-info-custom.js',
+        file: outputFile,
         format: 'es',
         sourcemap: dev ? true : false,
         inlineDynamicImports: true,
         banner: custombanner,
-        sourcemapIgnoreList: (relativeSourcePath, sourcemapPath) => {
-          // will ignore-list all files with node_modules in their paths
-          return relativeSourcePath.includes('node_modules');
-        },
       },
     ],
     plugins: [
       typescript({
         tsconfig: './tsconfig.json',
+        outDir: dev ? './dist/' : './build/',
       }),
       ...plugins,
     ],
@@ -59,9 +67,6 @@ export default [
       if (thisAsWindowForModules.some((id_) => id.trimRight().endsWith(id_))) {
         return 'window';
       }
-    },
-    watch: {
-      exclude: 'node_modules/**',
     },
   },
 ];
