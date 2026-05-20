@@ -9,7 +9,7 @@
 ```yaml
 frontend:
   extra_module_url:
-	- /local/more-info-custom.js
+    - /local/more-info-custom.js
 ```
 
 3. Restart Home Assistant.
