@@ -14,13 +14,13 @@
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowJs": true,
+    "ignoreDeprecations": "6.0",
     "rootDir": "src",
     "paths": {
       "@types": ["./src/types"],
       "@utils/*": ["./src/utils/*"]
     }
   },
-  "ignoreDeprecations": "6.0",
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "lib", "dist", "build"]
 }
