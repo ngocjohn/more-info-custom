@@ -1,4 +1,5 @@
 # MORE-INFO-CUSTOM
+<img width="304" height="667" alt="more-info-custom-details" src="https://github.com/user-attachments/assets/653c88e8-e067-4c8f-935f-03e325b532cf" />
 
 ## Installation
 
