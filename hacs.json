@@ -1,0 +1,7 @@
+{
+  "name": "More Info Custom",
+  "render_readme": true,
+  "filename": "more-info-custom.js",
+  "homeassistant": "2026.5.0",
+  "content_in_root": false
+}
